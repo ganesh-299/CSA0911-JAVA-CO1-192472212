@@ -1,0 +1,21 @@
+# Compiled Java class files
+*.class
+bin/
+out/
+target/
+
+# Package files
+*.jar
+*.war
+
+# IDE and Editor configurations
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS generated files
+.DS_Store
+
