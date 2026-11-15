@@ -1,0 +1,333 @@
+================================================================================
+         CAMPUS SMART-PARKING SYSTEM: ALL-TASK EXECUTION & TEST RESULTS         
+================================================================================
+
+### 1. INTEGRATED APPLICATION RUN (parking.app.Main) ###
+======================================================================
+   CAMPUS SMART-PARKING SYSTEM - OBJECT-ORIENTED MANAGEMENT DEMO
+======================================================================
+Facility Name: University Central Parking Complex
+Floors: 5 | Total Capacity: 33 bays.
+Slot Layout across floors (Jagged Array):
+  Floor 0: 5 slots
+  Floor 1: 8 slots
+  Floor 2: 6 slots
+  Floor 3: 10 slots
+  Floor 4: 4 slots
+
+--- PHASE 1: Pass Registrations & Sales ---
+Exception in thread "main" java.lang.NoSuchMethodError: 'java.lang.String parking.pass.Pass.getAssociatedRegistration()'
+	at parking.service.ParkingLot.registerPass(ParkingLot.java:59)
+	at parking.app.Main.main(Main.java:50)
+
+### 2. AUTOMATED TEST SUITE (parking.ParkingSystemTest) ###
+======================================================================
+      AUTOMATED SYSTEM TEST SUITE: CAMPUS SMART-PARKING
+======================================================================
+
+[GROUP 1: Normal Operations & Rates]
+Exception in thread "main" java.lang.NoSuchMethodError: 'void parking.model.Vehicle.<init>(java.lang.String, parking.model.VehicleType, parking.pricing.PricingRule)'
+	at parking.model.Bike.<init>(Bike.java:13)
+	at parking.ParkingSystemTest.main(ParkingSystemTest.java:63)
+
+### 3. TASK 01 STANDALONE DEMO (task01.Task01Demo) ###
+==================================================
+  Task 01: Candidate Classes Demonstration
+==================================================
+Initial slot status: Floor 0, Slot 1 (Available)
+Created vehicle: CAR [TN-01-AB-1234]
+Slot status after parking: Floor 0, Slot 1 (Occupied by CAR [TN-01-AB-1234])
+Issued ticket: Ticket{id='TKT-1001', vehicle=CAR [TN-01-AB-1234], location=F0-S1, entry=2026-11-15 07:59:51}
+Calculated fee for 3 hours (Visitor): Rs. 60
+Calculated fee for 3 hours (Pass Holder): Rs. 0
+Slot status after vehicle exit: Floor 0, Slot 1 (Available)
+==================================================
+Task 01 Demonstration completed successfully.
+
+### 4. TASK 02 STANDALONE DEMO (task02.DataRepresentationDemo) ###
+==================================================
+  Task 02: Data Representation Demonstration
+==================================================
+Data Types Demo:
+  Floor (int): 0, Slot (int): 2
+  Registration (String): TN-09-XY-9999
+  Occupied (boolean): true
+  Entry Time (LocalDateTime): 2026-11-15 07:59:51
+  Duration (long): 90 minutes
+  Fee (int rupees): Rs. 40
+
+Jagged Array Layout (Floors with Variable Slot Counts):
+  Floor 0 capacity: 3 slots.
+  Floor 1 capacity: 5 slots.
+  Floor 2 capacity: 2 slots.
+
+Integer Division vs. Ceiling Billing Analysis (Duration = 90 mins):
+  Truncated integer division (90 / 60): 1 hour -> Under-billed Fee: Rs. 20
+  Floating-point division (90 / 60.0): 1.5 hours.
+  Integer Ceiling Formula ((90 + 59) / 60): 2 hours -> Correct Fee: Rs. 40
+  Math.ceil(90 / 60.0): 2 hours -> Correct Fee: Rs. 40
+
+Scanner Input Processing (Simulated: "KA-05-MJ-4321 75"):
+  Parsed Vehicle: KA-05-MJ-4321
+  Parsed Duration: 75 mins
+  Billable Hours: 2 hours
+  Billed Amount: Rs. 40
+==================================================
+Task 02 Demonstration completed successfully.
+
+### 5. TASK 03 STANDALONE DEMO (task03.ParkingFacility) ###
+[0, 0]
+[0, 1]
+[1, 0]
+null
+true false false
+[0, 1]
+
+### 6. TASK 04 STANDALONE DEMO (task04.ConstructorDemo) ###
+==================================================
+  Task 04: Constructors & Memory Model Demo
+==================================================
+1. Default Constructor Ticket:
+   Ticket [ID=TKT-5001, Reg=UNREGISTERED, Slot=F0-S0, Time=2026-11-15 07:59:51, Duplicate=false]
+2. Parameterized Constructor Ticket:
+   Ticket [ID=TKT-5002, Reg=TN-07-AL-1234, Slot=F1-S4, Time=2026-11-15 07:59:51, Duplicate=false]
+3. Overloaded Constructor (Custom Time) Ticket:
+   Ticket [ID=TKT-5003, Reg=KA-01-EE-9876, Slot=F0-S2, Time=2026-11-15 05:59:51, Duplicate=false]
+4. Reissued Ticket via Copy Constructor Pattern:
+   Ticket [ID=TKT-DUP-5004, Reg=TN-07-AL-1234, Slot=F1-S4, Time=2026-11-15 07:59:51, Duplicate=true]
+
+Memory Reference Verification:
+  tParam == tRef (Same Heap Object): true
+  tParam == tReissued (Independent Heap Object): false
+  tParam registration equals tReissued registration: true
+==================================================
+Task 04 Demonstration completed successfully.
+
+### 7. TASK 05 STANDALONE DEMO (task05.StaticLifecycleDemo) ###
+==================================================
+  Task 05: Static Members & Object Lifecycle Demo
+==================================================
+[Static Init Block] System Code initialized to: UNIV-PARK-2026
+Initial Total Tickets Issued: 0
+-> [Lifecycle] Allocating and issuing new Ticket for: TN-02-ZZ-1111
+-> [Lifecycle] Allocating and issuing new Ticket for: TN-02-ZZ-2222
+Issued Tickets: 
+  Ticket{UNIV-PARK-2026-0001, reg=TN-02-ZZ-1111, active=true}
+  Ticket{UNIV-PARK-2026-0002, reg=TN-02-ZZ-2222, active=true}
+Current Total Tickets (via static method): 2
+-> [Lifecycle] Inspecting Ticket: UNIV-PARK-2026-0001 (Reg: TN-02-ZZ-1111)
+-> [Lifecycle] Ticket UNIV-PARK-2026-0001 successfully closed.
+Reference t1 set to null -> Heap object is now unreachable and eligible for GC.
+GC Status: Object reclamation is handled autonomously by the JVM Garbage Collector.
+
+--- Static Counter vs. Instance Counter Comparison ---
+North Gate Ticket: NorthGate-LOCAL-1
+North Gate Ticket: NorthGate-LOCAL-2
+South Gate Ticket: SouthGate-LOCAL-1
+North Gate Local Count: 2
+South Gate Local Count: 1
+Global Static Counter Total: 2
+==================================================
+Task 05 Demonstration completed successfully.
+
+### 8. TASK 06 STANDALONE DEMO (task06.InheritanceDemo) ###
+==================================================
+  Task 06: Inheritance Hierarchy Demonstration
+==================================================
+A. Tracing Constructor Execution for ElectricCar:
+    [Constructor Trace 1/3] Vehicle initialized: TN-09-EV-2026
+    [Constructor Trace 2/3] Car initialized (Seats: 5)
+    [Constructor Trace 3/3] ElectricCar initialized (Battery: 60 kWh, Charging: true)
+
+B. Hierarchical Subclass Details (Bike):
+    [Constructor Trace 1/3] Vehicle initialized: TN-09-BK-1111
+  Type=Bike, RegNo=TN-09-BK-1111, Rate=Rs.10/hr, HelmetStorage=true
+
+C. Multilevel Subclass Details (ElectricCar):
+  Type=Car, RegNo=TN-09-EV-2026, Rate=Rs.25/hr, Seats=5, Battery=60kWh, Charging=true
+  ElectricCar Hourly Rate (includes EV charging): Rs. 25
+
+D. Standard Car Details:
+    [Constructor Trace 1/3] Vehicle initialized: TN-09-CR-5555
+    [Constructor Trace 2/3] Car initialized (Seats: 4)
+  Type=Car, RegNo=TN-09-CR-5555, Rate=Rs.20/hr, Seats=4
+==================================================
+Task 06 Demonstration completed successfully.
+
+### 9. TASK 07 STANDALONE DEMO (task07.OverrideDemo) ###
+==================================================
+  Task 07: Overriding & Specialisation Demo
+==================================================
+Polymorphic Display (Overridden toString & rate):
+  Bike[TN-01-BK-1111, Rate=Rs.10/hr] -> 3 hrs Fee: Rs. 30
+  Car[TN-01-CR-2222, Rate=Rs.20/hr] -> 3 hrs Fee: Rs. 60
+  ElectricCar[TN-01-EV-3333, Rate=Rs.25/hr, Charging=true] -> 3 hrs Fee: Rs. 75
+
+Identity and Equality Verification:
+  carAlpha: Car[TN-09-AB-1234, Rate=Rs.20/hr]
+  carBeta:  Car[TN-09-AB-1234, Rate=Rs.20/hr]
+  Reference Equality (carAlpha == carBeta): false
+  Logical Equality (carAlpha.equals(carBeta)): true
+  carAlpha.hashCode(): -1131491332
+  carBeta.hashCode():  -1131491332
+  HashCodes Match: true
+  carAlpha.equals(diffCar): false
+
+Final Keyword Protections:
+  Final variable SystemConfig.MAX_PARKING_HOURS: 72
+  Final method getRegistrationNumber() returns immutable value: TN-09-AB-1234
+==================================================
+Task 07 Demonstration completed successfully.
+
+### 10. TASK 08 STANDALONE DEMO (task08.PolymorphismDemo) ###
+==================================================
+  Task 08: Polymorphism Demonstration
+==================================================
+1. Compile-Time Overloading on Bike:
+   Overload (int minutes = 90):        Rs. 20
+   Overload (minutes = 90, pass=true): Rs. 0
+   Overload (LocalTime 10:00 to 11:35):Rs. 20
+
+2. Runtime Polymorphism & Dynamic Dispatch Trace (Duration = 90 mins):
+   -> Declared: Vehicle | Actual: Bike | Rate: Rs.10/hr | Fee Billed: Rs.20
+   -> Declared: Vehicle | Actual: Car | Rate: Rs.20/hr | Fee Billed: Rs.40
+   -> Declared: Vehicle | Actual: ElectricCar | Rate: Rs.25/hr | Fee Billed: Rs.50
+   Total Fleet Fee Collected: Rs. 110
+
+3. Equality Comparison of Normalized Registration Numbers:
+   car1 equals car2 (same reg, different case): true
+   car1 equals car3 (different reg):            false
+
+4. Procedural Instanceof Alternative Verification:
+   TN-09-BK-9001 -> OOP Fee: Rs.20 == Instanceof Fee: Rs.20 (true)
+   TN-09-CR-9002 -> OOP Fee: Rs.40 == Instanceof Fee: Rs.40 (true)
+   TN-09-EV-9003 -> OOP Fee: Rs.50 == Instanceof Fee: Rs.50 (true)
+==================================================
+Task 08 Demonstration completed successfully.
+
+### 11. TASK 09 STANDALONE DEMO (task09.AbstractionDemo) ###
+==================================================
+  Task 09: Abstraction & Interface Demonstration
+==================================================
+1. Interface Static Method Call:
+   Standard kWh Tariff: Rs. 12 / kWh
+
+2. Electric Vehicle Instantiation:
+   Vehicle: Electric Car (EV) [TN-10-EV-8888]
+   Fast Charging Supported (Default/Overridden): true
+      [EV Station] Connected to charging bay: TN-10-EV-8888
+   Total Bill (2 hrs + EV Charging): Rs. 90
+      [EV Payment] Settled Rs. 90 for TN-10-EV-8888 (includes EV charging fee)
+      [Receipt] Payment received: Rs. 90 (Thank you!)
+      [EV Station] Disconnected charging cable: TN-10-EV-8888
+
+3. Standard Bike Settlement:
+   Vehicle: Standard Bike [TN-10-BK-4444]
+   Total Bill (2 hrs): Rs. 20
+      [Bike Payment] Settled Rs. 20 for TN-10-BK-4444
+      [Receipt] Payment received: Rs. 20 (Thank you!)
+
+4. Polymorphic Interface Binding:
+   Bound to Chargeable interface reference: Charging Fee = Rs. 0
+==================================================
+Task 09 Demonstration completed successfully.
+
+### 12. TASK 10 STANDALONE DEMO (parking.app.EncapsulationDemo) ###
+==================================================
+  Task 10: Encapsulation & Packages Demonstration
+==================================================
+1. Validating Object Creation and Boundary Protection:
+   Successfully created: TN-09-XX-1234 with 4 occupants.
+   Attempting to set invalid occupant count (10):
+   [Intercepted Expected Error]: Occupant count must be between 1 and 8. Received: 10
+   Attempting to create car with blank registration:
+   [Intercepted Expected Error]: Registration number cannot be null or blank.
+
+2. Service-Level Defensive Validation:
+   Attempting access to invalid Floor 5:
+   [Intercepted Expected Error]: Invalid floor: 5 (Allowed: 0 to 2)
+   Attempting billing with negative duration (-45 mins):
+   [Intercepted Expected Error]: Parking duration cannot be negative: -45
+   Valid Fee for 90 mins: Rs. 40
+
+3. Wrapper Classes, Autoboxing & Reference Equality Pitfall:
+   Autoboxed Integer: 40, Unboxed int: 40
+   Comparing cached Integers (smallA = 100, smallB = 100):
+     smallA == smallB (Cached object reference): true
+     smallA.equals(smallB) (Value comparison):   true
+   Comparing non-cached Integers (largeA = 1000, largeB = 1000):
+     largeA == largeB (DANGER! Compares stack references): false
+     largeA.equals(largeB) (CORRECT: Compares numeric value): true
+==================================================
+Task 10 Demonstration completed successfully.
+
+### 13. TASK 11 ORIGINAL ARRAY-BASED SYSTEM DEMO & DEFENSE (task11.OriginalParkingSystem) ###
+==================================================
+  Task 11: System Implementation & Test Defense
+==================================================
+
+--- 1. Normal Operations ---
+Parked Bike: Ticket[TKT-1001, TN-01-BK-0001, F0-S0]
+Parked Car:  Ticket[TKT-1002, TN-01-CR-0002, F0-S1]
+Parked EV:   Ticket[TKT-1003, TN-01-EV-0003, F1-S0]
+Available slots remaining: 0
+
+--- 2. Boundary Cases ---
+Testing parking when lot is full: [PASS - Intercepted]: Parking full: No slots available.
+Bike Exited (120 mins). Fee Billed: Rs. 20 (Expected: Rs. 20)
+Zero-minute stay exit fee: Rs. 0 (Expected: Rs. 0)
+Exactly 60-min stay fee: Rs. 20 (Expected: Rs. 20)
+Exactly 61-min stay fee: Rs. 40 (Expected: Rs. 40)
+
+--- 3. Invalid Cases ---
+Testing blank registration: [PASS]: Registration number cannot be blank.
+Testing duplicate active registration: [PASS]: Duplicate active registration: TN-01-CR-0002 is already parked.
+Testing exit time before entry time: [PASS]: Exit time cannot be earlier than entry time.
+Testing exit of non-parked vehicle: [PASS]: Exit failed: Vehicle TN-99-GHOST-9999 not found in active parking.
+
+--- 4. Daily Collection Scenario ---
+Vehicle A (Bike, 2 hrs):             Rs. 20 (Hand-calc: Rs. 20)
+Vehicle B (Car, 3 hrs):              Rs. 60 (Hand-calc: Rs. 60)
+Vehicle C (EV, 1 hr + charging):     Rs. 70 (Hand-calc: Rs. 70)
+--------------------------------------------------
+Actual Daily Facility Collection:    Rs. 150
+Hand-Calculated Daily Total:         Rs. 150
+Discrepancy:                         Rs. 0 (MATCH: true)
+==================================================
+Task 11 Verification completed successfully.
+
+### 14. TASK 12 ADAPTED SYSTEM DEMO (task12.AdaptedParkingSystem) ###
+==================================================
+  Task 12: Adapted Parking System Verification
+==================================================
+1. Facility Capacities across 5 Floors: [5, 8, 6, 10, 4]
+   Total Slots: 33
+   Initial Available: 33
+
+2. Testing E-Bike (Flat Fee Policy):
+   E-Bike 30 mins exit fee: Rs. 15 (Expected: Rs. 15)
+   E-Bike 6 hours exit fee: Rs. 15 (Expected: Rs. 15)
+
+3. Testing Delivery Van Pricing:
+   Delivery Van Peak (10:00 - 12:00, 2 hrs @ Rs. 40): Rs. 80 (Expected: Rs. 80)
+   Delivery Van Off-Peak (19:00 - 21:00, 2 hrs @ Rs. 20): Rs. 40 (Expected: Rs. 40)
+   Delivery Van Spanning (16:00 - 18:00, 1h peak + 1h off-peak): Rs. 60 (Expected: Rs. 60)
+
+4. Testing One-Day Pass Purchase & Exemption:
+   Sold One-Day Pass: One-Day Pass (Rs. 100) for KA-05-VISITOR-9
+   Current Pass Sales Revenue: Rs. 100
+   Visitor Car Exit Fee (Covered by One-Day Pass): Rs. 0 (Expected: Rs. 0)
+
+5. Testing Invalid / Expired Pass Date:
+   Car with Expired Pass Exit Fee: Rs. 40 (Expected: Rs. 40)
+
+6. Financial Reconciliation:
+   Total Parking Exit Fees: Rs. 250
+   Total Pass Sales Revenue:Rs. 100
+   Grand Total Collections: Rs. 350
+==================================================
+Task 12 Verification completed successfully.
+
+================================================================================
+              END OF COMPLETE TASK TEST AND EXECUTION LOG                       
+================================================================================
